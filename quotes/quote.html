@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #c9e4ff;
+            font-family: Arial, sans-serif;
+        }
+
+        .blockquote {
+            max-width: 600px;
+            min-width: 400px;
+            min-height: 100px;
+            padding: 25px;
+            padding-bottom: 5px;
+            background-color: rgb(241, 242, 242);
+            border: 1px solid rgb(74, 211, 199);;
+            color: #0b4237;
+            box-sizing: border-box;
+        }
+
+        .blockquote--bordered {
+            border-left-width: 10px;
+        }
+
+        .blockquote_text {
+            font-family: 'Gelasio', serif;
+            font-style: italic;
+            font-size: 1.15em;
+            line-height: 1.5;
+            margin: 0;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .blockquote_author {
+            font-weight: bold;
+            font-style: normal;
+            text-align: right;
+        }
+
+        button {
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            background-color: rgb(44, 115, 176);
+            color: white;
+            height: 50px;
+            width: 150px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: rgb(10, 67, 117);
+        }
+        
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Gelasio:400,400i,700,700i&display=swap" rel="stylesheet">
+</head>
+<body>
+    <blockquote class="blockquote blockquote--bordered">
+    </blockquote>
+
+    <button type="button" class="btn">Gerar outra</button>
+
+    <script src="quote.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-const getJSON = async(caminho) => {
+const getJSON = async (caminho) => {
     const resultado = await fetch(caminho);
     const dados = await resultado.json();
     return dados;
@@ -9,18 +9,22 @@ const init = () => {
     console.log(vdados);
 
     vdados.then(arr => {
+        //Para organizar os países em ordem alfabética
         arr.sort((a, b) => {
             if (a.name.common < b.name.common) return -1;
             if (a.name.common > b.name.common) return 1;
             return 0;
         });
 
+        //Criando os elementos que irão constituir a página
         const bpagina = document.body;
 
+        //Bootstrap para obter formato de 4 colunas responsivas
         const painel = document.createElement('div');
         painel.className = "row row-cols-md-4";
 
         arr.forEach(item => {
+            //Definindo elementos que serão criados a cada iteração, ou seja, para cada país
             let coluna = document.createElement('div');
             coluna.className = "col";
 
@@ -48,19 +52,33 @@ const init = () => {
             let textoitem1 = document.createTextNode(`Abreviação: ${item.cca3}`);
             listitem1.appendChild(textoitem1);
 
+            //As capitais estão dentro de arrays, então é necessário passar um forEach para acessá-las
             let listitem2 = document.createElement('li');
             let textoitem2 = document.createTextNode('Capitais: ');
             listitem2.appendChild(textoitem2);
             item.capital.forEach(element => {
-                let textoitem2conteudo = document.createTextNode(element);
+                if (item.capital.length != 1 && element != item.capital[item.capital.length - 1]) {
+                    textoitem2conteudo = document.createTextNode(element + ", ");
+                }
+                else {
+                    textoitem2conteudo = document.createTextNode(element);
+                }
                 listitem2.appendChild(textoitem2conteudo);
             })
 
+            //Os continentes estão dentro de arrays, então é necessário passar um forEach para acessá-los
             let listitem3 = document.createElement('li');
             let textoitem3 = document.createTextNode('Continentes: ');
             listitem3.appendChild(textoitem3);
             item.continents.forEach(element => {
-                let textoitem3conteudo = document.createTextNode(element);
+
+                //Lógica para adicionar vírgula aos itens que não se encontram na última posição da lista. Apenas por questões de organização.
+                if (item.continents.length != 1 && element != item.continents[item.continents.length - 1]) {
+                    textoitem3conteudo = document.createTextNode(element + ", ");
+                }
+                else {
+                    textoitem3conteudo = document.createTextNode(element);
+                }
                 listitem3.appendChild(textoitem3conteudo);
             })
 
@@ -69,17 +87,29 @@ const init = () => {
             listitem4.appendChild(textoitem4);
 
             let listitem5 = document.createElement('li');
-            let textoitem5 = document.createTextNode(`População: ${item.population}`);
+            //Altera a forma com que a população é mostrada, separando os milhares por pontos.
+            let formattedPopulation = item.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            let textoitem5 = document.createTextNode(`População: ${formattedPopulation}`);
             listitem5.appendChild(textoitem5);
 
+
+            //As línguas estão dentro de dicionários. Não consegui encontrar um padrão na nomenclatura das chaves desses dicionários, então utilizei o método "Object.entries" para iterar sobre o objeto principal e buscar apenas os valores, ignorando as chaves.
             let listitem6 = document.createElement('li');
             let textoitem6 = document.createTextNode('Línguas: ');
             listitem6.appendChild(textoitem6);
-            Object.entries(item.languages).forEach(([key, value]) => {
-                let textoitem6 = document.createTextNode(`${value} `);
-                listitem6.appendChild(textoitem6);
-            })
+            const entries = Object.entries(item.languages);
+            entries.forEach(([key, value], index) => {
 
+                //Lógica para adicionar vírgula aos itens que não se encontram na última posição. Apenas por questões de organização.
+                if (entries.length !== 1 && index !== entries.length - 1) {
+                    textoitem6 = document.createTextNode(value + ", ");
+                } else {
+                    textoitem6 = document.createTextNode(value);
+                }
+                listitem6.appendChild(textoitem6);
+            });
+
+            //As moedas estão dentro de dicionários. Não consegui encontrar um padrão na nomenclatura das chaves desses dicionários, então utilizei o método "Object.entries" para iterar sobre o objeto principal e buscar apenas os valores, ignorando as chaves.
             let listitem7 = document.createElement('li');
             let textoitem7 = document.createTextNode('Moedas: ');
             listitem7.appendChild(textoitem7);
@@ -90,6 +120,7 @@ const init = () => {
                 listitem7.appendChild(textoitem7_1);
             })
 
+            //Append Child dos itens a lista
             list.appendChild(listitem1);
             list.appendChild(listitem2);
             list.appendChild(listitem3);

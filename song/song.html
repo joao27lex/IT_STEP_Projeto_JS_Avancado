@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyric Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c9e4ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        h1{
+            font-size: 45px;
+        }
+
+        label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        input{
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #painel {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            line-height: 1.6;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Busque a sua música!</h1>
+
+    <label for="inputArtista">Digite o nome do artista: </label>
+    <input type="text" id="inputArtista" placeholder="Nome do artista">
+
+    <label for="inputMusica">Digite o nome da música: </label>
+    <input type="text" id="inputMusica" placeholder="Nome da música">
+
+    <button type="button" id="btnBuscar">Buscar</button>
+
+    <div id="painel"></div>
+
+    <script src="song.js"></script>
+</body>
+</html>
